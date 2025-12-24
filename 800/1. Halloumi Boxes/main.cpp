@@ -1,26 +1,23 @@
 // https://codeforces.com/problemset/problem/1903/A
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-
-bool is_sorted(vector<int>& temp) {
-    vector<int> arr = temp;
-    sort(temp.begin(), temp.end());
-    return arr == temp;
-}
 
 void solve() {
     int n, k; cin >> n >> k;
     vector<int> temp(n);
-    for(int i=0; i<n; i++) cin >> temp[i];
-    if(is_sorted(temp) || k > 1) {
+    for(int i=0; i<n; i++) {
+        cin >> temp[i];
+    }
+    vector<int> temp2 = temp;
+    sort(temp2.begin(), temp2.end());
+    if(temp2 == temp or k>1){
         cout << "YES\n";
     } else {
         cout << "NO\n";
     }
 }
+
 
 int main() {
     int t; cin >> t;
