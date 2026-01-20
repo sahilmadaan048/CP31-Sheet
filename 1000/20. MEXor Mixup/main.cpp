@@ -3,13 +3,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int xor_upto(int n) {
+    if(n % 4 == 0) return n;
+    if(n % 4 == 1) return 1;
+    if(n % 4 == 2) return n + 1;
+    return 0;
+}
+
+
 void solve2()
 {
     int a, b; cin >> a >> b;
-    int x = 0;
-    for(int i=0; i<=a-1; i++) {
-        x ^= i;
-    }   
+    // int x = 0;
+    // for(int i=0; i<=a-1; i++) {
+    //     x ^= i;
+    // }  
+
+    int x = xor_upto(a - 1); 
 
     if(x == b) {
         cout << a << "\n";
