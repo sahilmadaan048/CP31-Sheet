@@ -5,13 +5,13 @@ using namespace std;
 void solve()
 {
     int n; cin >> n;
-    vector<int> a(n);
+    vector<long long> a(n);
 
     for(int i=0; i<n; i++) {
         cin >> a[i];
     }	
 
-    vector<pair<int, int>> temp;
+    vector<pair<long long, int>> temp;
     for(int i=0; i<n; i++) {
         temp.push_back({a[i], i });
     }
@@ -32,9 +32,9 @@ void solve()
     }
 
 
-    int ans = 0;
-    for(auto i=0; i<n;i++) {
-        ans += 2 * (a[i] * abs(pos[i]));
+    long long ans = 0;
+    for(int i=0; i<n;i++) {
+        ans += 2LL * (a[i] * abs(pos[i]));
     }
     // cout<< "ans: " << ans << "\n";
     cout<<  ans << "\n";
