@@ -5,10 +5,12 @@ using namespace std;
 
 void solve()
 {
-    int a, b; cin >> a >> b;
-    if(a == b) {
-        cout << 0 << " " << 0 << endl; // infinite excitement
-    } else {
+    long long a,b;
+    cin >> a >> b;
+    if(a==b)
+        cout << 0 << " " << 0 << '\n';
+    else
+    {
         long long g = abs(a-b);
         long long m = min(a%g,g-a%g);
         cout << g << " " << m << '\n';
