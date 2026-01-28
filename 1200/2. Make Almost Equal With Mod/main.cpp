@@ -5,43 +5,25 @@ using namespace std;
 
 using i64 = long long;
 
-void solve()
-{   
-    int n; cin >> n;
-    vector<int> a(n);
-
-    int cnt1 = 0, cnt2 = 0;
-
-    for(int i=0; i<n; i++) {
-        cin >> a[i];
-        if(a[i] % 2 == 0) cnt1++;
-        else cnt2++;
+void solve() {
+    int n;
+    std::cin >> n;
+    
+    std::vector<i64> a(n);
+    for (int i = 0; i < n; i++) {
+        std::cin >> a[i];
     }
-
-    // cout << *max_element(a.begin(), a.end()) << "\n";
-
+    
     i64 k = 1;
     while (true) {
         for (int i = 0; i < n; i++) {
             if (a[i] % k != a[0] % k) {
-                cout << k << "\n";
+                std::cout << k << "\n";
                 return;
             }
         }
         k *= 2;
     }
-
-
-    // if(cnt1 == n) {
-    //     cout << 4 << "\n";
-    //     return;
-    // }
-    // else if(cnt2 == n) {
-    //     cout << 1 << "\n";
-    //     return;
-    // }
-
-    // cout << 2 << "\n";
 }
 
 int main() {
