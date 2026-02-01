@@ -11,8 +11,6 @@ void solve()
     for(int i=0; i<n; i++) {
         cin >> c[i];
     }
-    cout << *max_element(c.begin() , c.end());
-    cout << "\n";
 }
 
 int main() {
