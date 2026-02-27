@@ -26,6 +26,7 @@ int n,i,j;
 i64 ans;
 char a[1000005];
 int f[1000005];
+
 void solve(){
     cin>>n;ans=0;
     for(i=1;i<=n;i++){

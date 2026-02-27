@@ -1,5 +1,5 @@
 // Author - sahilmadaan048
-// https://codeforces.com/problemset/problem/1808/B
+// https://codeforces.com/problemset/problem/1793/C
 
 #include "bits/stdc++.h"
 #define int long long
@@ -36,38 +36,44 @@ template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a)
 // ===================================END Of the input module ==========================================
 
 
-void solve(){
- int n,m;
- cin>>n>>m;
- vector<vector<int>> x(m, vector<int>(n));
- for (int i=0; i<n; i++) {
-    for (int j=0; j<m; j++) {
-        cin>>x[j][i];
+// typedef vector<int> vi;
+
+void solve() {
+    int n;
+    cin >> n;
+    vi a(n);
+    for (int &i: a)
+        cin >> i;
+    int l = 0, r = n - 1;
+    int mn = 1, mx = n;
+    while (l <= r) {
+        if (a[l] == mn) {
+            l++;
+            mn++;
+        } else if (a[l] == mx) {
+            l++;
+            mx--;
+        } else if (a[r] == mn) {
+            r--;
+            mn++;
+        } else if (a[r] == mx) {
+            r--;
+            mx--;
+        } else {
+            break;
+        }
+    }
+    if(l <= r){
+        cout << l + 1 << " " << r + 1 << endl;
+    } else{
+        cout << -1 << endl;
     }
 }
 
-int res=0;
-for (auto vv: x) {
-    sort(vv.begin(), vv.end());
-
-    for (int i=0, j=-n+1; i<n; i++, j+=2) {
-        res+= 1LL*j*vv[i];
-
-    }
-}
-cout<<res<<endl;
-}
-
-int32_t main()
-{
-
-   ios_base::sync_with_stdio(false);
-   cin.tie(NULL);
-
-   int T; cin >> T;
-   while (T--)
-   {
-    solve();
-}
-return 0;
+signed main() {
+    int q = 1;
+    cin >> q;
+    while (q--)
+        solve();
+    return 0;
 }

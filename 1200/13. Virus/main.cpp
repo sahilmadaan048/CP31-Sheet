@@ -1,5 +1,5 @@
 // Author - sahilmadaan048
-// https://codeforces.com/problemset/problem/1808/B
+// https://codeforces.com/problemset/problem/1704/C
 
 #include "bits/stdc++.h"
 #define int long long
@@ -35,39 +35,41 @@ template<typename typC,typename typD> ostream &operator<<(ostream &cout,const ve
 template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a) { int n=a.size(); if (!n) return cout; cout<<a[0]; for (int i=1; i<n; i++) cout<<' '<<a[i]; return cout; }
 // ===================================END Of the input module ==========================================
 
+using ll = long long;
 
-void solve(){
- int n,m;
- cin>>n>>m;
- vector<vector<int>> x(m, vector<int>(n));
- for (int i=0; i<n; i++) {
-    for (int j=0; j<m; j++) {
-        cin>>x[j][i];
+
+void solve() {
+  int n, m;
+  cin >> n >> m;
+  vector<int> a(m); 
+  for(int i=0; i<m; i++) cin >> a[i]; 
+
+  sort(a.begin(), a.end());
+
+  int i = 0;
+  int j = n-1;
+
+  while(i < j ) {
+    int mid = i + (j - i) / 2;
+    if(check(mid, a, n, m)) {
+      i = mid + 1;
+    } else {
+      j = mid - 1;
     }
+  } 
 }
 
-int res=0;
-for (auto vv: x) {
-    sort(vv.begin(), vv.end());
-
-    for (int i=0, j=-n+1; i<n; i++, j+=2) {
-        res+= 1LL*j*vv[i];
-
-    }
-}
-cout<<res<<endl;
-}
 
 int32_t main()
 {
 
-   ios_base::sync_with_stdio(false);
-   cin.tie(NULL);
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
 
-   int T; cin >> T;
-   while (T--)
-   {
-    solve();
-}
-return 0;
+  int T; cin >> T;
+  while (T--)
+  {
+   solve();
+ }
+ return 0;
 }
