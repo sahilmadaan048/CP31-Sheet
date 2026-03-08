@@ -5,6 +5,242 @@
 // D - https://codeforces.com/contest/1692/problem/D
 // E - https://codeforces.com/contest/1692/problem/E
 // F - https://codeforces.com/contest/1692/problem/F
+// G - https://codeforces.com/contest/1692/problem/G
+// h - https://codeforces.com/contest/1692/problem/H
+
+
+// ---------------------------- H -------------------------
+
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        vector<int> a(n);
+        for(int i=0;i<n;++i)
+            cin >> a[i];
+        int x = a[0];
+        int l = 0;
+        int r = 0;
+        int q = 1;
+        map<int,vector<int> > h;
+        for(int i=0;i<n;++i)
+            h[a[i]].push_back(i);
+        for(const auto& p:h){
+            int e = p.first;
+            int dp = 1;
+            int b = p.second[0];
+            for(int i=1;i<p.second.size();++i){
+                ++dp;
+                dp -= p.second[i]-p.second[i-1]-1;
+                if(dp < 1){
+                    b = p.second[i];
+                    dp = 1;
+                }
+                if(dp > q){
+                    q = dp;
+                    l = b;
+                    r = p.second[i];
+                    x = e;
+                }
+            }
+        }
+        cout << x << " " << l+1 << " " << r+1 << "\n";
+    }
+    return 0;
+}
+
+
+// Author - sahilmadaan048
+
+// #include "bits/stdc++.h"
+// #define int long long
+// #define uint unsigned long long
+// #define vi vector<int>
+// #define vvi vector<vi >
+// #define vb vector<bool>
+// #define vvb vector<vb >
+// #define fr(i,n) for(int i=0; i<(n); i++)
+// #define rep(i,a,n) for(int i=(a); i<=(n); i++)
+// #define nl cout<<"\n"
+// #define dbg(var) cout<<#var<<"="<<var<<" "
+// #define all(v) v.begin(),v.end()
+// #define sz(v) (int)(v.size())
+// #define srt(v)  sort(v.begin(),v.end())         // sort 
+// #define mxe(v)  *max_element(v.begin(),v.end())     // find max element in vector
+// #define mne(v)  *min_element(v.begin(),v.end())     // find min element in vector
+// #define unq(v)  v.resize(distance(v.begin(), unique(v.begin(), v.end())));
+// // make sure to sort before applying unique // else only consecutive duplicates would be removed 
+// #define bin(x,y)  bitset<y>(x) 
+// using namespace std;
+// int MOD=1e9+7;      // Hardcoded, directly change from here for functions!
+
+
+// void modadd(int &a , int b) {a=((a%MOD)+(b%MOD))%MOD;}
+// void modsub(int &a , int b) {a=((a%MOD)-(b%MOD)+MOD)%MOD;}
+// void modmul(int &a , int b) {a=((a%MOD)*(b%MOD))%MOD;}
+// // ================================== take ip/op like vector,pairs directly!==================================
+// template<typename typC,typename typD> istream &operator>>(istream &cin,pair<typC,typD> &a) { return cin>>a.first>>a.second; }
+// template<typename typC> istream &operator>>(istream &cin,vector<typC> &a) { for (auto &x:a) cin>>x; return cin; }
+// template<typename typC,typename typD> ostream &operator<<(ostream &cout,const pair<typC,typD> &a) { return cout<<a.first<<' '<<a.second; }
+// template<typename typC,typename typD> ostream &operator<<(ostream &cout,const vector<pair<typC,typD>> &a) { for (auto &x:a) cout<<x<<'\n'; return cout; }
+// template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a) { int n=a.size(); if (!n) return cout; cout<<a[0]; for (int i=1; i<n; i++) cout<<' '<<a[i]; return cout; }
+// // ===================================END Of the input module ==========================================
+
+
+// void solve(){
+//   int n; cin >> n;
+
+//   vector<long long> x(n);
+//   unordered_map<long long, vector<int>> pos;
+
+//   for (int i = 0; i < n; i++) {
+//     cin >> x[i];
+//     pos[x[i]].push_back(i);
+//   }
+
+//   long long best = LLONG_MIN;
+//   long long besta = x[0];
+//   int bestl = 0, bestr = 0;
+
+//   for (auto &[a, v] : pos) {
+//     long long cur = 1;
+//     int l = v[0];
+
+//     if (cur > best) {
+//       best = cur;
+//       besta = a;
+//       bestl = l;
+//       bestr = v[0];
+//     }
+
+//     for (int i = 1; i < v.size(); i++) {
+//       long long gain = 1 - (v[i] - v[i-1] - 1);
+
+//       if (cur + gain < 1) {
+//         cur = 1;
+//         l = v[i];
+//       } else {
+//         cur += gain;
+//       }
+
+//       if (cur > best) {
+//         best = cur;
+//         besta = a;
+//         bestl = l;
+//         bestr = v[i];
+//       }
+//     }
+//   }
+
+//   cout << besta << " " << bestl + 1 << " " << bestr + 1 << "\n";
+// }
+
+// int32_t main()
+// {
+
+//  ios_base::sync_with_stdio(false);
+//  cin.tie(NULL);
+
+//  int T; cin >> T;
+//  while (T--)
+//  {
+//   solve();
+// }
+// return 0;
+// }
+
+
+
+// ---------------------------- g -------------------------
+
+// Author - sahilmadaan048
+
+// #include "bits/stdc++.h"
+// #define int long long
+// #define uint unsigned long long
+// #define vi vector<int>
+// #define vvi vector<vi >
+// #define vb vector<bool>
+// #define vvb vector<vb >
+// #define fr(i,n) for(int i=0; i<(n); i++)
+// #define rep(i,a,n) for(int i=(a); i<=(n); i++)
+// #define nl cout<<"\n"
+// #define dbg(var) cout<<#var<<"="<<var<<" "
+// #define all(v) v.begin(),v.end()
+// #define sz(v) (int)(v.size())
+// #define srt(v)  sort(v.begin(),v.end())         // sort 
+// #define mxe(v)  *max_element(v.begin(),v.end())     // find max element in vector
+// #define mne(v)  *min_element(v.begin(),v.end())     // find min element in vector
+// #define unq(v)  v.resize(distance(v.begin(), unique(v.begin(), v.end())));
+// // make sure to sort before applying unique // else only consecutive duplicates would be removed 
+// #define bin(x,y)  bitset<y>(x) 
+// using namespace std;
+// int MOD=1e9+7;      // Hardcoded, directly change from here for functions!
+
+
+// void modadd(int &a , int b) {a=((a%MOD)+(b%MOD))%MOD;}
+// void modsub(int &a , int b) {a=((a%MOD)-(b%MOD)+MOD)%MOD;}
+// void modmul(int &a , int b) {a=((a%MOD)*(b%MOD))%MOD;}
+// // ================================== take ip/op like vector,pairs directly!==================================
+// template<typename typC,typename typD> istream &operator>>(istream &cin,pair<typC,typD> &a) { return cin>>a.first>>a.second; }
+// template<typename typC> istream &operator>>(istream &cin,vector<typC> &a) { for (auto &x:a) cin>>x; return cin; }
+// template<typename typC,typename typD> ostream &operator<<(ostream &cout,const pair<typC,typD> &a) { return cout<<a.first<<' '<<a.second; }
+// template<typename typC,typename typD> ostream &operator<<(ostream &cout,const vector<pair<typC,typD>> &a) { for (auto &x:a) cout<<x<<'\n'; return cout; }
+// template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a) { int n=a.size(); if (!n) return cout; cout<<a[0]; for (int i=1; i<n; i++) cout<<' '<<a[i]; return cout; }
+// // ===================================END Of the input module ==========================================
+
+
+// void solve(){
+//    int n, k; cin >> n >> k;
+//    vector<int> a(n);
+
+//    for(int i=0; i<n; i++) {
+//     cin >> a[i];
+//    }
+
+//    int ok[n];
+
+//    for(int i=0; i<n-1; i++) {
+//       ok[i] = (a[i] < 2 * a[i+1]);
+//    }
+
+//    int tot = 0;
+//    for(int i=0; i<k; i++) {
+//       tot += ok[i];
+//    }
+//    int res = 0;
+//    if(tot == k) res++;
+
+//    for(int i=k; i<n-1; i++) {
+//       tot += ok[i];
+//       tot -= ok[i-k];
+//       if(tot == k) res++;
+//    }
+//    cout << res << "\n";
+// }  
+
+// int32_t main()
+// {
+
+//   ios_base::sync_with_stdio(false);
+//   cin.tie(NULL);
+
+//   int T; cin >> T;
+//   while (T--)
+//   {
+//     solve();
+//  }
+//  return 0;
+// }
+
 
 
 // ---------------------------- F --------------------------
@@ -74,7 +310,7 @@
 
 // int32_t main()
 // {
- 
+
 //  ios_base::sync_with_stdio(false);
 //  cin.tie(NULL);
 
@@ -92,89 +328,89 @@
 
 // Author - sahilmadaan048
 
-#include "bits/stdc++.h"
-#define int long long
-#define uint unsigned long long
-#define vi vector<int>
-#define vvi vector<vi >
-#define vb vector<bool>
-#define vvb vector<vb >
-#define fr(i,n) for(int i=0; i<(n); i++)
-#define rep(i,a,n) for(int i=(a); i<=(n); i++)
-#define nl cout<<"\n"
-#define dbg(var) cout<<#var<<"="<<var<<" "
-#define all(v) v.begin(),v.end()
-#define sz(v) (int)(v.size())
-#define srt(v)  sort(v.begin(),v.end())         // sort 
-#define mxe(v)  *max_element(v.begin(),v.end())     // find max element in vector
-#define mne(v)  *min_element(v.begin(),v.end())     // find min element in vector
-#define unq(v)  v.resize(distance(v.begin(), unique(v.begin(), v.end())));
-// make sure to sort before applying unique // else only consecutive duplicates would be removed 
-#define bin(x,y)  bitset<y>(x) 
-using namespace std;
-int MOD=1e9+7;      // Hardcoded, directly change from here for functions!
+// #include "bits/stdc++.h"
+// #define int long long
+// #define uint unsigned long long
+// #define vi vector<int>
+// #define vvi vector<vi >
+// #define vb vector<bool>
+// #define vvb vector<vb >
+// #define fr(i,n) for(int i=0; i<(n); i++)
+// #define rep(i,a,n) for(int i=(a); i<=(n); i++)
+// #define nl cout<<"\n"
+// #define dbg(var) cout<<#var<<"="<<var<<" "
+// #define all(v) v.begin(),v.end()
+// #define sz(v) (int)(v.size())
+// #define srt(v)  sort(v.begin(),v.end())         // sort 
+// #define mxe(v)  *max_element(v.begin(),v.end())     // find max element in vector
+// #define mne(v)  *min_element(v.begin(),v.end())     // find min element in vector
+// #define unq(v)  v.resize(distance(v.begin(), unique(v.begin(), v.end())));
+// // make sure to sort before applying unique // else only consecutive duplicates would be removed 
+// #define bin(x,y)  bitset<y>(x) 
+// using namespace std;
+// int MOD=1e9+7;      // Hardcoded, directly change from here for functions!
 
 
-void modadd(int &a , int b) {a=((a%MOD)+(b%MOD))%MOD;}
-void modsub(int &a , int b) {a=((a%MOD)-(b%MOD)+MOD)%MOD;}
-void modmul(int &a , int b) {a=((a%MOD)*(b%MOD))%MOD;}
-// ================================== take ip/op like vector,pairs directly!==================================
-template<typename typC,typename typD> istream &operator>>(istream &cin,pair<typC,typD> &a) { return cin>>a.first>>a.second; }
-template<typename typC> istream &operator>>(istream &cin,vector<typC> &a) { for (auto &x:a) cin>>x; return cin; }
-template<typename typC,typename typD> ostream &operator<<(ostream &cout,const pair<typC,typD> &a) { return cout<<a.first<<' '<<a.second; }
-template<typename typC,typename typD> ostream &operator<<(ostream &cout,const vector<pair<typC,typD>> &a) { for (auto &x:a) cout<<x<<'\n'; return cout; }
-template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a) { int n=a.size(); if (!n) return cout; cout<<a[0]; for (int i=1; i<n; i++) cout<<' '<<a[i]; return cout; }
-// ===================================END Of the input module ==========================================
-#define       forn(i,n)              for(int i=0;i<n;i++)
-#define       ll long long
+// void modadd(int &a , int b) {a=((a%MOD)+(b%MOD))%MOD;}
+// void modsub(int &a , int b) {a=((a%MOD)-(b%MOD)+MOD)%MOD;}
+// void modmul(int &a , int b) {a=((a%MOD)*(b%MOD))%MOD;}
+// // ================================== take ip/op like vector,pairs directly!==================================
+// template<typename typC,typename typD> istream &operator>>(istream &cin,pair<typC,typD> &a) { return cin>>a.first>>a.second; }
+// template<typename typC> istream &operator>>(istream &cin,vector<typC> &a) { for (auto &x:a) cin>>x; return cin; }
+// template<typename typC,typename typD> ostream &operator<<(ostream &cout,const pair<typC,typD> &a) { return cout<<a.first<<' '<<a.second; }
+// template<typename typC,typename typD> ostream &operator<<(ostream &cout,const vector<pair<typC,typD>> &a) { for (auto &x:a) cout<<x<<'\n'; return cout; }
+// template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a) { int n=a.size(); if (!n) return cout; cout<<a[0]; for (int i=1; i<n; i++) cout<<' '<<a[i]; return cout; }
+// // ===================================END Of the input module ==========================================
+// #define       forn(i,n)              for(int i=0;i<n;i++)
+// #define       ll long long
 
 
-ll query(int l, int r, vector<ll>& p) {
-    return p[r] - (l ? p[l - 1] : 0);
-}
+// ll query(int l, int r, vector<ll>& p) {
+//     return p[r] - (l ? p[l - 1] : 0);
+// }
 
-void solve() {  
-    int n, s; cin >> n >> s;
-    vector<ll> a(n), p(n);
-    forn(i, n) {
-        cin >> a[i];
-        p[i] = a[i];
-        if(i) p[i] += p[i - 1];
-    }
+// void solve() {  
+//     int n, s; cin >> n >> s;
+//     vector<ll> a(n), p(n);
+//     forn(i, n) {
+//         cin >> a[i];
+//         p[i] = a[i];
+//         if(i) p[i] += p[i - 1];
+//     }
 
-    int ans = INT_MAX;
+//     int ans = INT_MAX;
 
-    for(int i = 0; i < n; ++i) {
-        int l = i, r = n - 1, pos = -1;
-        while(l <= r) {
-            int mid = l + r >> 1;
-            if(query(i, mid, p) <= s) {
-                pos = mid;
-                l = mid + 1;
-            } else r = mid - 1;
-        }
-        if(pos == -1 || query(i, pos, p) != s) continue;
-        ans = min(ans, n - (pos - i + 1));
-    }
+//     for(int i = 0; i < n; ++i) {
+//         int l = i, r = n - 1, pos = -1;
+//         while(l <= r) {
+//             int mid = l + r >> 1;
+//             if(query(i, mid, p) <= s) {
+//                 pos = mid;
+//                 l = mid + 1;
+//             } else r = mid - 1;
+//         }
+//         if(pos == -1 || query(i, pos, p) != s) continue;
+//         ans = min(ans, n - (pos - i + 1));
+//     }
 
-    cout << (ans == INT_MAX ? -1 : ans) << "\n";
-} 
-     
+//     cout << (ans == INT_MAX ? -1 : ans) << "\n";
+// } 
 
 
-int32_t main()
-{
- 
- ios_base::sync_with_stdio(false);
- cin.tie(NULL);
 
-    int T; cin >> T;
-    while (T--)
-    {
-        solve();
-    }
-    return 0;
-}
+// int32_t main()
+// {
+
+//  ios_base::sync_with_stdio(false);
+//  cin.tie(NULL);
+
+//     int T; cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+//     return 0;
+// }
 
 
 
@@ -225,7 +461,7 @@ int32_t main()
 
 // void solve(){
 //    string s;  cin >> s;
-   
+
 //    int x; cin >> x;
 
 //    int n = s.size();
@@ -238,7 +474,7 @@ int32_t main()
 //    while(true) {
 //       string h = (hour < 10 ? "0" : "") + to_string(hour);
 //       string m = (mins < 10 ? "0" : "") + to_string(mins);
-   
+
 
 //       string str = h + ":" + m;
 
@@ -265,7 +501,7 @@ int32_t main()
    //    string str = to_string(hour) + ":" + to_string(mins);
 
    //    st.insert(str);
-   
+
    //    if(check(str)) {
    //       st.insert(str);
    //    }
@@ -291,7 +527,7 @@ int32_t main()
 
 // int32_t main()
 // {
- 
+
 //  ios_base::sync_with_stdio(false);
 //  cin.tie(NULL);
 
@@ -361,7 +597,7 @@ int32_t main()
 //             char c = temp[i-1][j+1];
 //             char d = temp[i+1][j-1];
 //             char e = temp[i+1][j+1];
-      
+
 //             if(a == '#' and b == '#' and c == '#' and d == '#' and e == '#') {
 //                cout << i + 1 << " " << j + 1 << endl;
 //             }
@@ -372,7 +608,7 @@ int32_t main()
 
 // int32_t main()
 // {
- 
+
 //  ios_base::sync_with_stdio(false);
 //  cin.tie(NULL);
 
@@ -447,7 +683,7 @@ int32_t main()
 
 // int32_t main()
 // {
- 
+
 //  ios_base::sync_with_stdio(false);
 //  cin.tie(NULL);
 
